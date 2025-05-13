@@ -11,11 +11,9 @@ public class LogInTest {
     public void LogInTest1(){
 
         System.out.println("LogIn Test");
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("i = " + i);
-        }
+        String str  =  get("https://fakestoreapi.com/products").getBody().asString();
+        System.out.println(str);
 
     }
 }
