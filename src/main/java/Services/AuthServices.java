@@ -1,4 +1,6 @@
 package Services;
 
-public class AuthServices {
+import Base.Baseclass;
+
+public class AuthServices extends Baseclass {
 }

@@ -1,6 +1,8 @@
 package LogInAPITest;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.equalTo;
+
 import io.restassured.RestAssured;
 import org.testng.annotations.Test;
 
