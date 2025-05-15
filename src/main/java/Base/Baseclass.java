@@ -9,6 +9,7 @@ import static io.restassured.RestAssured.given;
 public class Baseclass {
 
     private static final String BASE_URL = "https://fakestoreapi.com";
+    public static final String CATEGORY_ID  = "CategoryId";
     private RequestSpecification requestSpecification;
 
     public Baseclass() {
@@ -31,7 +32,7 @@ public class Baseclass {
                 .post(postUrl);
     }
 
-    public Response deleteUser(String endpoint,boolean isReqResURL){
+    public Response deleteRecord(String endpoint,boolean isReqResURL){
         if (isReqResURL){
             requestSpecification.header("x-api-key", "reqres-free-v1");
         }
@@ -42,7 +43,7 @@ public class Baseclass {
                 .delete(endpoint);
     }
 
-    public Response updateUser(String body,String endpoint,boolean isReqResURL){
+    public Response updateResponse(String body,String endpoint,boolean isReqResURL){
         if (isReqResURL){
             requestSpecification.header("x-api-key", "reqres-free-v1");
         }

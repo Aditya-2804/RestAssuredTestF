@@ -27,10 +27,10 @@ public class UserServices extends Baseclass {
     }
 
     public Response deleteUser(String endpoint){
-        return baseclass.deleteUser(endpoint,true);
+        return baseclass.deleteRecord(endpoint,true);
     }
 
     public Response updateUser(String body){
-        return baseclass.updateUser(body,"https://reqres.in/api/users/2",true);
+        return baseclass.updateResponse(body,"https://reqres.in/api/users/2",true);
     }
 }

@@ -63,46 +63,63 @@ public class ProductTestCases extends Baseclass {
     }
 
 
-    //Add new Product
-//    https://fakestoreapi.com/products
+//    https://api.escuelajs.co/api/v1/products/
+    //"id": 110,
     @Test
-    public void addNewProduct(){
+    public void createNewProduct(){
+               productsServices = new ProductsServices();
+        Response response = productsServices.updateAProduct("{\n" +
+                "  \"title\": \"Latest new new Product\",\n" +
+                "  \"price\": 10,\n" +
+                "  \"description\": \"A description\",\n" +
+                "  \"categoryId\": 1,\n" +
+                "  \"images\": [\"https://placehold.co/600x400\"]\n" +
+                "}");
+
+        response.then()
+                .statusCode(201)
+                .log()
+                .all();
+    }
+
+
+    @Test
+    public void updateProduct(){
 
         productsServices = new ProductsServices();
-//        Products products = new Products(143,"New Product",2.14F,"This is a testing prototype product its in the beta mode cyrrrently","Sci-fi","ww//pininterest.bs",new Rating());
-//        Response response =productsServices.postSingleProduct(products);
-//
-//        response.then()
-//                .statusCode(200)                    // 201 to check the product is added
-//                .header("Content-Type","application/json; charset=utf-8")
-//                .header("Access-Control-Allow-Origin","*");
-//
-//        Assert.assertTrue(response.getTime() <2000," Response time should not exceed 2s");
-//        System.out.println(response.prettyPrint());
-//
+        Response productID110 = productsServices.getResponse("https://api.escuelajs.co/api/v1/products/110");
+        System.out.println("Product ID 110 Before: \n"+productID110.prettyPrint());
+        int priceBefore =productID110.jsonPath().getInt("price");
+        String titleBefore =productID110.jsonPath().getString("title");
 
+        System.out.println("Price and Title Before Updating: "+priceBefore+" AND "+titleBefore);
 
-//        given()
-//                .contentType(ContentType.JSON)
-//                .header("x-api-key","reqres-free-v1")
-//                .body("{\n" +
-//                        "    \"name\": \"morpheus\",\n" +
-//                        "    \"job\": \"leader\"\n" +
-//                        "}")
-//
-//                .when()
-//                .post("https://reqres.in/api/users")
-//                .then()
-//                .log()
-//                .all();
+        Response productID110New = productsServices.updateProduct("{\n" +
+                "  \"title\": \"Change title\",\n" +
+                "  \"price\": 100\n" +
+                "}","https://api.escuelajs.co/api/v1/products/110");
 
+        productID110New.then()
+                .statusCode(200)
+                .log()
+                .all();
 
-
-
+        int priceAfter =productID110.jsonPath().getInt("price");
+        String titleAfter =productID110.jsonPath().getString("title");
+        System.out.println("Price and Title After Update: "+priceAfter+" AND "+titleAfter);
 
     }
 
-    //update Product
-    // delete product
+
+    @Test
+    public void deleteProduct(){
+        productsServices = new ProductsServices();
+        Response response = productsServices.deleteProduct("https://api.escuelajs.co/api/v1/products/110");
+
+        response.then()
+                .statusCode(200)
+                .log()
+                .all();
+    }
 
 }

@@ -22,7 +22,15 @@ public class ProductsServices extends Baseclass {
                 .getList("", Products.class);
     }
 
-    public Response postSingleProduct(Object payload){
-        return baseclass.postRequest(payload,"https://fakestoreapi.com/products/",true);
+    public Response updateAProduct(Object payload){
+        return baseclass.postRequest(payload,"https://fakestoreapi.com/products/",false);
+    }
+
+    public Response updateProduct(String body,String endpoint){
+        return baseclass.updateResponse(body,endpoint,false);
+    }
+
+    public Response deleteProduct(String endpoint){
+        return baseclass.deleteRecord(endpoint,false);
     }
 }
