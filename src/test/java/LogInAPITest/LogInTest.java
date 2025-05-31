@@ -14,8 +14,12 @@ public class LogInTest {
 
         System.out.println("LogIn Test");
 
+        WebDriver driver = new EdgeDriver();
+        driver.get("https://www.google.co.in/")
         String str  =  get("https://fakestoreapi.com/products").getBody().asString();
         System.out.println(str);
+
+        driver.quit();
 
     }
 }
