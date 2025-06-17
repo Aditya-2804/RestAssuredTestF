@@ -7,6 +7,7 @@ import io.restassured.RestAssured;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.Test;
 
@@ -19,7 +20,7 @@ public class LogInTest {
         System.out.println("LogIn Test");
 
 
-        WebDriver driver = new EdgeDriver();
+        WebDriver driver = new ChromeDriver();
         driver.get("https://www.google.com/");
         String str  =  get("https://fakestoreapi.com/products").getBody().asString();
         System.out.println(driver.getCurrentUrl());
